@@ -1,5 +1,8 @@
 extends Control
-
+@export var current_canvas = true
+@export var brush_size = 10
+@export var secondary_color = Color.WHITE
+@export var primary_color = Color.BLACK
 @onready var DrawSurface = get_node("%DrawSurface")
 @onready var CanvasCamera = $CanvasCamera
 @onready var DrawControl = $DrawControl
@@ -7,10 +10,10 @@ extends Control
 func _ready():
 	DrawControl.size = $DrawControl/SubViewport.size
 	$Container.size = $DrawControl/SubViewport.size
-
-func _process(delta):
-	BrushInfo.current_position = DrawControl.get_local_mouse_position()
 func _input(event):
+	DrawSurface.secondary_color = secondary_color
+	DrawSurface.primary_color = primary_color
+	DrawSurface.brush_size = brush_size
 	if event is InputEventMouseButton and event.is_pressed():
 		match event.button_index:
 			MOUSE_BUTTON_WHEEL_UP:

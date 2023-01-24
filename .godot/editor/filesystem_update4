@@ -1,2 +1,5 @@
-res://Scenes/Canvas.tscn
+res://Scenes/Canvas/src/Draw.gd
 res://Scenes/Canvas/Canvas.tscn
+res://Scenes/Canvas/src/Control.gd
+res://Scenes/Canvas/src/DrawControl.gd
+res://control.tscn
