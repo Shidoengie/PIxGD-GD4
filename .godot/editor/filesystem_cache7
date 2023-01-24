@@ -1,0 +1,13 @@
+0b7126e0c6e86d3ec295a72f5aa6e0bd
+::res://::1674552646
+default_env.tres::Environment::-1::1674551731::0::1::::<><>::
+icon.png::CompressedTexture2D::1916219226718106414::1650638568::1674551759::1::::<><>::
+::res://Scenes/::1674552646
+Canvas.tscn::PackedScene::-1::1674552646::0::1::::<><>::res://Scenes/Canvas/src/Control.gd<>res://Scenes/Canvas/src/DrawControl.gd<>res://Scenes/Canvas/src/Draw.gd
+::res://Scenes/Canvas/::1674552639
+::res://Scenes/Canvas/src/::1674552646
+Control.gd::GDScript::-1::1674552296::0::1::::<>Control<>::
+Draw.gd::GDScript::-1::1674552385::0::1::::<>Control<>::
+DrawControl.gd::GDScript::-1::1674551731::0::1::::<>SubViewportContainer<>::
+::res://src/::1674552537
+BrushInfo.gd::GDScript::-1::1674551731::0::1::::<>Node<>::

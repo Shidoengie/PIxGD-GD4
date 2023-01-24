@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckyvqsj1jly2d"]
+
+[ext_resource type="Script" path="res://Scenes/Canvas/src/Control.gd" id="1_5xl5u"]
+[ext_resource type="Script" path="res://Scenes/Canvas/src/DrawControl.gd" id="2_a00w7"]
+[ext_resource type="Script" path="res://Scenes/Canvas/src/Draw.gd" id="3_tu6we"]
+
+[sub_resource type="Shader" id="1"]
+code = "shader_type canvas_item;
+
+uniform float checker_scale = 15;
+
+float checkersTexture( in vec2 p )
+{
+    vec2 q = floor(p)+vec2(0.4);
+	
+    return mod( q.x+q.y, 2.0 );            // xor pattern
+}
+
+void fragment() {
+	
+    COLOR = vec4((
+		vec3(checkersTexture(UV*vec2(checker_scale))/2.5)
+		),1);
+}"
+
+[sub_resource type="ShaderMaterial" id="2"]
+shader = SubResource("1")
+shader_parameter/checker_scale = 25.0
+
+[node name="Canvas" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5xl5u")
+
+[node name="Container" type="ColorRect" parent="."]
+material = SubResource("2")
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 300.0
+
+[node name="DrawControl" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 301.0
+offset_bottom = 301.0
+script = ExtResource("2_a00w7")
+
+[node name="SubViewport" type="SubViewport" parent="DrawControl"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+gui_disable_input = true
+size = Vector2i(250, 250)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="DrawSurface" type="Control" parent="DrawControl/SubViewport"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 300.0
+mouse_filter = 1
+script = ExtResource("3_tu6we")
+
+[node name="CanvasCamera" type="Camera2D" parent="."]
+position = Vector2(-113, 146)
+current = true
+
+[connection signal="mouse_moved" from="DrawControl" to="DrawControl" method="_on_DrawControl_mouse_moved"]
+[connection signal="notPainting" from="DrawControl" to="DrawControl/SubViewport/DrawSurface" method="_on_DrawControl_notPainting"]
+[connection signal="paint" from="DrawControl" to="DrawControl/SubViewport/DrawSurface" method="_on_DrawControl_paint"]
