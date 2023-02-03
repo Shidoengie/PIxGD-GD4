@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="PixGD"
-run/main_scene="res://Scenes/Canvas/Canvas.tscn"
+run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
-
-[editor]
-
-export/convert_text_resources_to_binary=true
 
 [input]
 

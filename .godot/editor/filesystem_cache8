@@ -1,0 +1,13 @@
+0b7126e0c6e86d3ec295a72f5aa6e0bd
+::res://::1675361947
+default_env.tres::Environment::-1::1674551731::0::1::::<><>::
+icon.png::CompressedTexture2D::1916219226718106414::1650638568::1674551759::1::::<><>::
+control.tscn::PackedScene::4006143391756401424::1675361947::0::1::::<><>::uid://ckyvqsj1jly2d
+::res://Scenes/::1674559421
+::res://Scenes/Canvas/::1675361947
+Canvas.tscn::PackedScene::5525579459931886049::1675361947::0::1::::<><>::res://Scenes/Canvas/src/Control.gd<>res://Scenes/Canvas/src/DrawControl.gd<>res://Scenes/Canvas/src/Draw.gd
+::res://Scenes/Canvas/src/::1675361946
+Control.gd::GDScript::-1::1675361946::0::1::::<>Control<>::
+Draw.gd::GDScript::-1::1675361229::0::1::::<>Control<>::
+DrawControl.gd::GDScript::-1::1675360472::0::1::::<>SubViewportContainer<>::
+::res://src/::1674556769

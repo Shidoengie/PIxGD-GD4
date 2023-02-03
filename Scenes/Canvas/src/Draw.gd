@@ -3,7 +3,8 @@ extends Control
 var secondary_color = Color.WHITE
 var primary_color = Color.BLACK
 var current_color = Color.BLACK
-
+enum ToolEnums {BRUSH,LINE,BUCKET}
+var current_tool:ToolEnums = ToolEnums.BRUSH
 var brush_size = 10
 
 var canPaint = false
@@ -11,8 +12,14 @@ var is_primary = true
 var last_position = Vector2.ZERO
 var current_position = Vector2.ZERO
 func _draw():
-	if canPaint:
-		draw_circle(current_position,10,current_color)
+	
+	if not canPaint:
+		return
+	match current_tool:
+		ToolEnums.BRUSH:
+			draw_circle(current_position,10,current_color)
+		_:
+			pass
 	
 func _process(delta):
 	current_color = primary_color if is_primary else secondary_color

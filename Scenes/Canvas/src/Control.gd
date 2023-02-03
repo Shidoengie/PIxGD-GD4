@@ -1,15 +1,19 @@
 extends Control
+
 @export var current_canvas = true
 @export var brush_size = 10
 @export var secondary_color = Color.WHITE
 @export var primary_color = Color.BLACK
+@export var canvas_size = Vector2(100,100)
 @onready var DrawSurface = get_node("%DrawSurface")
 @onready var CanvasCamera = $CanvasCamera
 @onready var DrawControl = $DrawControl
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	DrawControl.size = $DrawControl/SubViewport.size
-	$Container.size = $DrawControl/SubViewport.size
+	DrawControl.size = canvas_size
+	$Container.size = canvas_size
+	DrawSurface.size = canvas_size
+	$DrawControl/SubViewport.size = canvas_size
 func _input(event):
 	DrawSurface.secondary_color = secondary_color
 	DrawSurface.primary_color = primary_color
