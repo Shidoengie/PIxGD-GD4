@@ -19,9 +19,9 @@ func _gui_input(event):
 	BrushInfo.last_position = get_local_mouse_position()
 	
 	if Input.is_action_pressed("mouseLeft_1st"):
-		is_primary = true
+		BrushInfo.is_primary = true
 	elif Input.is_action_pressed("mouseRight_2nd"):
-		is_primary = false
+		BrushInfo.is_primary = false
 	else:
 		emit_signal("notPainting")
 		return
@@ -33,6 +33,3 @@ func _gui_input(event):
 #	pass
 
 
-func _on_DrawControl_mouse_moved(prev_mousePos, mousePos):
-	
-	pass # Replace with function body.

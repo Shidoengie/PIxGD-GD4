@@ -1,2 +1,6 @@
-res://Scenes/Canvas.tscn
 res://Scenes/Canvas/Canvas.tscn
+res://src/BrushInfo.gd
+res://Scenes/Canvas/src/Draw.gd
+res://Scenes/Canvas/src/DrawControl.gd
+res://Scenes/Canvas/src/Control.gd
+res://src/control.tscn

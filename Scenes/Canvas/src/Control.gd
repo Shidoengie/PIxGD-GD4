@@ -1,15 +1,15 @@
 extends Control
 
+@export var canvas_size = Vector2(100,100)
 @onready var DrawSurface = get_node("%DrawSurface")
 @onready var CanvasCamera = $CanvasCamera
 @onready var DrawControl = $DrawControl
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	DrawControl.size = $DrawControl/SubViewport.size
-	$Container.size = $DrawControl/SubViewport.size
-
-func _process(delta):
-	BrushInfo.current_position = DrawControl.get_local_mouse_position()
+	DrawSurface.size = canvas_size
+	DrawControl.size = canvas_size
+	$Container.size = canvas_size
+	$DrawControl/SubViewport.size = canvas_size
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		match event.button_index:
