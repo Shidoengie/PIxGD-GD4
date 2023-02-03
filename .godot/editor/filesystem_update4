@@ -4,3 +4,6 @@ res://Scenes/Canvas/src/Draw.gd
 res://Scenes/Canvas/src/DrawControl.gd
 res://Scenes/Canvas/src/Control.gd
 res://src/control.tscn
+res://Scenes/Main/mainscreen.gd
+res://Scenes/Main/control.tscn
+res://src/Global.gd

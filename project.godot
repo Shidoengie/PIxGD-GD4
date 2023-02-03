@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="PixGD"
-run/main_scene="res://Scenes/Canvas/Canvas.tscn"
+run/main_scene="res://Scenes/Main/control.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
 [autoload]
 
 BrushInfo="*res://src/BrushInfo.gd"
+Global="*res://src/Global.gd"
 
 [input]
 
