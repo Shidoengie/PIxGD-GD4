@@ -1,37 +1,26 @@
 extends Control
 
-var secondary_color = Color.WHITE
-var primary_color = Color.BLACK
-var current_color = Color.BLACK
-enum ToolEnums {BRUSH,LINE,BUCKET}
-var current_tool:ToolEnums = ToolEnums.BRUSH
-var brush_size = 10
-
 var canPaint = false
-var is_primary = true
-var last_position = Vector2.ZERO
-var current_position = Vector2.ZERO
+var current_color : Color
 func _draw():
 	
 	if not canPaint:
 		return
-	match current_tool:
-		ToolEnums.BRUSH:
-			draw_circle(current_position,10,current_color)
+	match BrushInfo.current_tool:
+		BrushInfo.ToolEnum.PEN:
+			draw_circle(BrushInfo.current_position,BrushInfo.size,current_color)
 		_:
 			pass
 	
+	
 func _process(delta):
-	current_color = primary_color if is_primary else secondary_color
-	print(is_primary)
+	current_color = BrushInfo.primary_color if BrushInfo.is_primary else BrushInfo.secondary_color
 	queue_redraw()
 	
+
+
 func _on_DrawControl_paint():
 	canPaint = true
 
 func _on_DrawControl_notPainting():
 	canPaint = false
-	
-func _on_draw_control_mouse_moved(prev_mousePos, mousePos):
-	last_position = prev_mousePos
-	current_position = mousePos

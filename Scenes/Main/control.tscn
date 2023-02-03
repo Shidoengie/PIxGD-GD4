@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0g8ano47avwp"]
+
+[ext_resource type="Script" path="res://Scenes/Main/mainscreen.gd" id="1_5mnil"]
+[ext_resource type="PackedScene" uid="uid://ckyvqsj1jly2d" path="res://Scenes/Canvas/Canvas.tscn" id="2_5k4kc"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5mnil")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PrimaryColorPicker" type="ColorPickerButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+offset_top = 568.0
+offset_right = 128.0
+offset_bottom = 600.0
+
+[node name="SecondaryColorPicker" type="ColorPickerButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+offset_top = 600.0
+offset_right = 128.0
+offset_bottom = 632.0
+
+[node name="ZoomEdit" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -51.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ZoomSlider" type="HSlider" parent="CanvasLayer/ZoomEdit"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(88, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 50.0
+max_value = 1000.0
+step = 100.0
+value = 150.0
+allow_greater = true
+allow_lesser = true
+
+[node name="ZoomInput" type="LineEdit" parent="CanvasLayer/ZoomEdit"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100"
+virtual_keyboard_type = 2
+
+[node name="Canvas" parent="." instance=ExtResource("2_5k4kc")]
+unique_name_in_owner = true
+
+[connection signal="color_changed" from="CanvasLayer/PrimaryColorPicker" to="." method="_on_primary_color_picker_color_changed"]
+[connection signal="color_changed" from="CanvasLayer/SecondaryColorPicker" to="." method="_on_secondary_color_picker_color_changed"]
+[connection signal="drag_ended" from="CanvasLayer/ZoomEdit/ZoomSlider" to="." method="_on_zoom_slider_drag_ended"]
+[connection signal="value_changed" from="CanvasLayer/ZoomEdit/ZoomSlider" to="." method="_on_zoom_slider_value_changed"]
+[connection signal="text_submitted" from="CanvasLayer/ZoomEdit/ZoomInput" to="." method="_on_zoom_input_text_submitted"]
+[connection signal="zoom_changed" from="Canvas" to="." method="_on_canvas_zoom_changed"]

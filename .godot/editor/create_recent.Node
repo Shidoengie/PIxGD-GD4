@@ -1,5 +1,7 @@
-TabContainer
-TabBar
+VBoxContainer
+LineEdit
+ColorPickerButton
+ColorPicker
 HSlider
 VSlider
 CanvasLayer

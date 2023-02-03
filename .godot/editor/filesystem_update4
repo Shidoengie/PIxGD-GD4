@@ -1,8 +1,9 @@
 res://Scenes/Canvas/Canvas.tscn
-res://Scenes/Canvas/src/Control.gd
+res://src/BrushInfo.gd
 res://Scenes/Canvas/src/Draw.gd
-res://draw_canvas.tscn
 res://Scenes/Canvas/src/DrawControl.gd
-res://Scenes/Canvas/ToolValues.gd
-res://control.tscn
-res://Main.tscn
+res://Scenes/Canvas/src/Control.gd
+res://src/control.tscn
+res://Scenes/Main/mainscreen.gd
+res://Scenes/Main/control.tscn
+res://src/Global.gd
