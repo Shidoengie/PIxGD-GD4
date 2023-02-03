@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnti85yooh26h"]
+
+[ext_resource type="PackedScene" uid="uid://ckyvqsj1jly2d" path="res://Scenes/Canvas/Canvas.tscn" id="1_f6yyk"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Canvas" parent="." instance=ExtResource("1_f6yyk")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+offset_top = 508.0
+offset_right = 211.0
+offset_bottom = 524.0
