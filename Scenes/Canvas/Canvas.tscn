@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckyvqsj1jly2d"]
+[gd_scene load_steps=7 format=3 uid="uid://ckyvqsj1jly2d"]
 
 [ext_resource type="Script" path="res://Scenes/Canvas/src/Control.gd" id="1_5xl5u"]
 [ext_resource type="Script" path="res://Scenes/Canvas/src/DrawControl.gd" id="2_a00w7"]
 [ext_resource type="Script" path="res://Scenes/Canvas/src/Draw.gd" id="3_tu6we"]
+[ext_resource type="Script" path="res://Scenes/Canvas/src/PreviewCanvas.gd" id="4_ks7ry"]
 
 [sub_resource type="Shader" id="1"]
 code = "shader_type canvas_item;
@@ -38,6 +39,24 @@ layout_mode = 0
 offset_right = 100.0
 offset_bottom = 100.0
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PreDrawView" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(100, 100)
+render_target_update_mode = 4
+
+[node name="PreDrawSurface" type="Control" parent="SubViewportContainer/PreDrawView"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_ks7ry")
+
 [node name="DrawControl" type="SubViewportContainer" parent="."]
 texture_filter = 1
 layout_mode = 0
@@ -45,7 +64,7 @@ offset_right = 100.0
 offset_bottom = 100.0
 script = ExtResource("2_a00w7")
 
-[node name="SubViewport" type="SubViewport" parent="DrawControl"]
+[node name="MainDrawView" type="SubViewport" parent="DrawControl"]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
@@ -54,7 +73,7 @@ size = Vector2i(100, 100)
 render_target_clear_mode = 1
 render_target_update_mode = 4
 
-[node name="DrawSurface" type="Control" parent="DrawControl/SubViewport"]
+[node name="DrawSurface" type="Control" parent="DrawControl/MainDrawView"]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
@@ -68,5 +87,5 @@ position = Vector2(53, 46)
 current = true
 
 [connection signal="mouse_moved" from="DrawControl" to="DrawControl" method="_on_DrawControl_mouse_moved"]
-[connection signal="notPainting" from="DrawControl" to="DrawControl/SubViewport/DrawSurface" method="_on_DrawControl_notPainting"]
-[connection signal="paint" from="DrawControl" to="DrawControl/SubViewport/DrawSurface" method="_on_DrawControl_paint"]
+[connection signal="notPainting" from="DrawControl" to="DrawControl/MainDrawView/DrawSurface" method="_on_draw_control_not_painting"]
+[connection signal="paint" from="DrawControl" to="DrawControl/MainDrawView/DrawSurface" method="_on_DrawControl_paint"]

@@ -10,7 +10,8 @@ func _ready():
 	DrawSurface.size = canvas_size
 	DrawControl.size = canvas_size+Vector2.ONE
 	$Container.size = canvas_size
-	$DrawControl/SubViewport.size = canvas_size
+	$DrawControl/MainDrawView.size = canvas_size
+	
 
 func _input(event):
 	
