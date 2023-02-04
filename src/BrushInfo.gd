@@ -1,7 +1,7 @@
 extends Node
 
-enum ToolEnum {PEN,LINE}
-var current_tool = ToolEnum.LINE as ToolEnum
+enum ToolEnum {PEN,LINE,ERASOR}
+var current_tool = ToolEnum.ERASOR as ToolEnum
 var current_position = Vector2.ZERO 
 var last_position = Vector2.ZERO
 var click_position = Vector2.ZERO

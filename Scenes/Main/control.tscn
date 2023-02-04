@@ -28,41 +28,31 @@ offset_top = 600.0
 offset_right = 128.0
 offset_bottom = 632.0
 
-[node name="ZoomEdit" type="VBoxContainer" parent="CanvasLayer"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -88.0
-offset_top = -51.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="ZoomSlider" type="HSlider" parent="CanvasLayer/ZoomEdit"]
+[node name="ZoomInput" type="SpinBox" parent="CanvasLayer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(88, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-min_value = 50.0
+offset_left = 1064.0
+offset_top = 597.0
+offset_right = 1152.0
+offset_bottom = 628.0
+min_value = 1.0
 max_value = 1000.0
-step = 100.0
-value = 150.0
+step = 25.0
+value = 101.0
+rounded = true
 allow_greater = true
 allow_lesser = true
+suffix = "%"
 
-[node name="ZoomInput" type="LineEdit" parent="CanvasLayer/ZoomEdit"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "100"
-virtual_keyboard_type = 2
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Canvas" parent="." instance=ExtResource("2_5k4kc")]
 unique_name_in_owner = true
+offset_top = 152.0
+offset_bottom = 152.0
 
 [connection signal="color_changed" from="CanvasLayer/PrimaryColorPicker" to="." method="_on_primary_color_picker_color_changed"]
 [connection signal="color_changed" from="CanvasLayer/SecondaryColorPicker" to="." method="_on_secondary_color_picker_color_changed"]
-[connection signal="drag_ended" from="CanvasLayer/ZoomEdit/ZoomSlider" to="." method="_on_zoom_slider_drag_ended"]
-[connection signal="value_changed" from="CanvasLayer/ZoomEdit/ZoomSlider" to="." method="_on_zoom_slider_value_changed"]
-[connection signal="text_submitted" from="CanvasLayer/ZoomEdit/ZoomInput" to="." method="_on_zoom_input_text_submitted"]
+[connection signal="value_changed" from="CanvasLayer/ZoomInput" to="." method="_on_zoom_input_value_changed"]
 [connection signal="zoom_changed" from="Canvas" to="." method="_on_canvas_zoom_changed"]

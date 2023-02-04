@@ -1,13 +1,15 @@
 extends Control
 
 signal zoom_changed(value)
-@export var canvas_size = Vector2(100,100)
+@export var current_tool = BrushInfo.ToolEnum.PEN
+@export var canvas_size = Vector2(20,20)
 @onready var DrawSurface = get_node("%DrawSurface")
 @onready var CanvasCamera = $CanvasCamera
 @onready var DrawControl = $DrawControl
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	DrawSurface.size = canvas_size
+	BrushInfo.current_tool = current_tool
 	DrawControl.size = canvas_size+Vector2.ONE
 	$Container.size = canvas_size
 	$DrawControl/MainDrawView.size = canvas_size
