@@ -22,3 +22,6 @@ func _on_zoom_input_value_changed(value):
 
 func _on_canvas_zoom_changed(value):
 	ZoomInput.value = value.x*100
+
+func _input(event):
+	pass

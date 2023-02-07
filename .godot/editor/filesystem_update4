@@ -1,5 +1,4 @@
+res://Scenes/Colorpickerbutton/ColorButton.gd
+res://Scenes/Colorpickerbutton/ColorButton.tscn
 res://Scenes/Canvas/Canvas.tscn
-res://Scenes/Canvas/src/Draw.gd
 res://Scenes/Main/control.tscn
-res://Scenes/Main/mainscreen.gd
-res://Scenes/Canvas/src/Control.gd

@@ -1,8 +1,15 @@
+Panel
+HSlider
+PopupPanel
+ColorRect
+Label
+Button
+TabBar
+Container
 SpinBox
 VFlowContainer
 MenuBar
 ItemList
-Label
 SubViewportContainer
 Control
 SubViewport
@@ -10,6 +17,5 @@ VBoxContainer
 LineEdit
 ColorPickerButton
 ColorPicker
-HSlider
 VSlider
 CanvasLayer

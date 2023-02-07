@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://do1mxwei2hsi1"]
+
+[sub_resource type="Shader" id="1"]
+code = "shader_type canvas_item;
+
+uniform float checker_scale = 15;
+
+float checkersTexture( in vec2 p )
+{
+    vec2 q = floor(p)+vec2(0.4);
+	
+    return mod( q.x+q.y, 2.0 );            // xor pattern
+}
+
+void fragment() {
+	
+    COLOR = vec4((
+		vec3(checkersTexture(UV*vec2(checker_scale))/2.5)
+		),1);
+}"
+
+[resource]
+shader = SubResource("1")
+shader_parameter/checker_scale = 25.0
