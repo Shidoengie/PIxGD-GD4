@@ -1,4 +1,6 @@
-res://Scenes/Colorpickerbutton/ColorButton.gd
 res://Scenes/Colorpickerbutton/ColorButton.tscn
+res://Assets/shaders/Checkers.tres
 res://Scenes/Canvas/Canvas.tscn
 res://Scenes/Main/control.tscn
+res://src/Global.gd
+res://Scenes/Canvas/src/Control.gd

@@ -10,6 +10,7 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_5xl5u")
+secondary_color = Color(1, 1, 1, 0)
 canvas_size = Vector2(100, 100)
 
 [node name="Container" type="ColorRect" parent="."]

@@ -1,24 +1,30 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://do1mxwei2hsi1"]
 
 [sub_resource type="Shader" id="1"]
+resource_local_to_scene = true
 code = "shader_type canvas_item;
 
-uniform float checker_scale = 15;
-
+uniform vec4 color2 :source_color = vec4(0.7,0.7,0.7,1);
+uniform vec4 color1 :source_color = vec4(1,1,1,1);
+uniform float checker_scale_x = 15;
+uniform float checker_scale_y = 15;
 float checkersTexture( in vec2 p )
 {
-    vec2 q = floor(p)+vec2(0.4);
-	
-    return mod( q.x+q.y, 2.0 );            // xor pattern
+    vec2 q = floor(p);
+    return mod( q.x+q.y, 2.0);            // xor pattern
 }
 
 void fragment() {
 	
-    COLOR = vec4((
-		vec3(checkersTexture(UV*vec2(checker_scale))/2.5)
-		),1);
+    COLOR = mix(color1,color2,vec4((
+		vec3(checkersTexture(UV*vec2(checker_scale_x,checker_scale_y)))
+		),1));
+	
 }"
 
 [resource]
 shader = SubResource("1")
-shader_parameter/checker_scale = 25.0
+shader_parameter/color2 = Color(0.576471, 0.576471, 0.576471, 1)
+shader_parameter/color1 = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/checker_scale_x = 15.0
+shader_parameter/checker_scale_y = 15.0

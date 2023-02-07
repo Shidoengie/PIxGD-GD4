@@ -1,7 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://c04sbd1cjqv8e"]
+[gd_scene load_steps=4 format=3 uid="uid://c04sbd1cjqv8e"]
 
 [ext_resource type="Script" path="res://Scenes/Colorpickerbutton/ColorButton.gd" id="1_bt100"]
-[ext_resource type="Material" uid="uid://do1mxwei2hsi1" path="res://Assets/shaders/Checkers.tres" id="2_ef6f1"]
+
+[sub_resource type="Shader" id="1"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec4 color2 :source_color = vec4(0.7,0.7,0.7,1);
+uniform vec4 color1 :source_color = vec4(1,1,1,1);
+uniform float checker_scale_x = 15;
+uniform float checker_scale_y = 15;
+float checkersTexture( in vec2 p )
+{
+    vec2 q = floor(p);
+    return mod( q.x+q.y, 2.0);            // xor pattern
+}
+
+void fragment() {
+	
+    COLOR = mix(color1,color2,vec4((
+		vec3(checkersTexture(UV*vec2(checker_scale_x,checker_scale_y)))
+		),1));
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yhxu8"]
+shader = SubResource("1")
+shader_parameter/color2 = Color(0.7, 0.7, 0.7, 1)
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/checker_scale_x = 50.0
+shader_parameter/checker_scale_y = 15.0
 
 [node name="ColorButton" type="Control"]
 layout_mode = 3
@@ -24,19 +52,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="transPanel" type="ColorRect" parent="."]
-material = ExtResource("2_ef6f1")
+material = SubResource("ShaderMaterial_yhxu8")
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -8.0
+offset_right = 104.0
+offset_bottom = 32.0
 mouse_filter = 2
 
 [node name="ColorPanel" type="ColorRect" parent="transPanel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
