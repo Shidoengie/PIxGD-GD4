@@ -4,12 +4,12 @@ var canPaint = false
 var current_color : Color
 func _draw():
 	
-	match BrushInfo.current_tool:
-		BrushInfo.ToolEnum.PEN:
+	match Tools.current:
+		Tools.PEN:
 			_paint(current_color)
-		BrushInfo.ToolEnum.ERASOR:
+		Tools.ERASOR:
 			_paint(Color.TRANSPARENT)
-		BrushInfo.ToolEnum.LINE:
+		Tools.LINE:
 			if Input.is_action_just_released("mouseLeft_1st") or Input.is_action_just_released("mouseRight_2nd"):
 				draw_line(BrushInfo.click_position,BrushInfo.current_position,current_color,BrushInfo.size)
 		_:

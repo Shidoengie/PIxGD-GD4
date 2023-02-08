@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 BrushInfo="*res://src/BrushInfo.gd"
 Global="*res://src/Global.gd"
+Tools="*res://src/Tools.gd"
 
 [input]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckyvqsj1jly2d"]
+[gd_scene load_steps=6 format=3 uid="uid://btes0aksw3q6s"]
 
 [ext_resource type="Script" path="res://Scenes/Canvas/src/Control.gd" id="1_5xl5u"]
 [ext_resource type="Script" path="res://Scenes/Canvas/src/DrawControl.gd" id="2_a00w7"]

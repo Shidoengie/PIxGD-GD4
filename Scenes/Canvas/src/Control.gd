@@ -3,7 +3,7 @@ extends Control
 signal zoom_changed(value)
 @export var primary_color = Color.BLACK
 @export var secondary_color = Color.WHITE
-@export var current_tool = BrushInfo.ToolEnum.PEN
+@export var current_tool = Tools.PEN
 @export var canvas_size = Vector2(20,20)
 @onready var DrawSurface = get_node("%DrawSurface")
 @onready var CanvasCamera = $CanvasCamera
@@ -13,7 +13,7 @@ func _ready():
 	BrushInfo.primary_color = primary_color
 	BrushInfo.secondary_color = secondary_color 
 	DrawSurface.size = canvas_size
-	BrushInfo.current_tool = current_tool
+	Tools.current = current_tool
 	DrawControl.size = canvas_size+Vector2.ONE
 	$Container.size = canvas_size
 	$DrawControl/MainDrawView.size = canvas_size
@@ -38,3 +38,4 @@ func _input(event):
 
 func update_zoom(value):
 	CanvasCamera.zoom = value
+

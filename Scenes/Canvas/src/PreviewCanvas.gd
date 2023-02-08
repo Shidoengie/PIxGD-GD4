@@ -5,8 +5,8 @@ func _draw():
 #	draw_circle(BrushInfo.click_position,BrushInfo.size,BrushInfo.current_color)
 	if not BrushInfo.can_paint:
 		return
-	match BrushInfo.current_tool:
-		BrushInfo.ToolEnum.LINE:
+	match Tools.current:
+		Tools.LINE:
 			draw_line(BrushInfo.click_position,BrushInfo.current_position,BrushInfo.current_color,BrushInfo.size)
 		_:
 			pass

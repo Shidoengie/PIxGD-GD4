@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfx0qhbg2blya"]
 
 [ext_resource type="Script" path="res://Scenes/Main/mainscreen.gd" id="1_5mnil"]
-[ext_resource type="PackedScene" uid="uid://ckyvqsj1jly2d" path="res://Scenes/Canvas/Canvas.tscn" id="2_5k4kc"]
+[ext_resource type="PackedScene" uid="uid://btes0aksw3q6s" path="res://Scenes/Canvas/Canvas.tscn" id="2_5k4kc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ms3xk"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 1)
