@@ -12,13 +12,13 @@ signal change_brush
 @onready var CanvasCamera = $CanvasCamera
 #@onready var DrawControl = $DrawControl
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-#	BrushInfo.primary_color = primary_color
-#	BrushInfo.secondary_color = secondary_color 
-#	DrawSurface.size = canvas_size
-#	Tools.current = current_tool
-#	DrawControl.size = canvas_size+Vector2.ONE
-	
+func _ready():
+	BrushInfo.primary_color = primary_color
+	BrushInfo.secondary_color = secondary_color 
+	DrawSurface.size = canvas_size
+	Tools.current = current_tool
+
+
 func _input(event):
 	
 	if event is InputEventMouseButton and event.is_pressed():
@@ -44,7 +44,7 @@ func _gui_input(event):
 		BrushInfo.last_position = BrushInfo.current_position
 		BrushInfo.current_position = DrawSurface.get_local_mouse_position()
 	if Input.is_action_just_pressed("mouseLeft_1st") or Input.is_action_just_pressed("mouseRight_2nd"):
-		BrushInfo.click_position = get_local_mouse_position()
+		BrushInfo.click_position = DrawSurface.get_local_mouse_position()
 	if Input.is_action_pressed("mouseLeft_1st"):
 		BrushInfo.is_primary = true
 	elif Input.is_action_pressed("mouseRight_2nd"):
@@ -57,3 +57,11 @@ func _gui_input(event):
 #func _process(delta):
 #	pass
 
+
+func _on_mouse_exited():
+	BrushInfo.is_inside_canvas = false
+	BrushInfo.can_paint = false
+
+
+func _on_mouse_entered():
+	BrushInfo.is_inside_canvas = true
