@@ -1,6 +1,6 @@
 extends Node
 enum {SQUARE,ROUND,LINE}
-var type = ROUND
+var current_shape = ROUND
 
 var current_position = Vector2.ZERO 
 var last_position = Vector2.ZERO
@@ -13,8 +13,9 @@ var current_color : Color
 var size = 20
 var can_paint = false
 var brushImage : Image
+
 func _ready():
-	change_brush(type,size,current_color)
+	change_brush(current_shape,size,current_color)
 func change_brush(brush_type,size,color) -> void:
 	match brush_type:
 		SQUARE:

@@ -4,10 +4,13 @@ signal paint()
 signal notPainting
 signal zoom_changed(value)
 signal change_brush
+
 @export var primary_color = Color.BLACK
 @export var secondary_color = Color.WHITE
+@export var brush_shape = BrushInfo.ROUND
 @export var current_tool = Tools.PEN
 @export var canvas_size = Vector2(20,20)
+
 @onready var DrawSurface = get_node("%DrawSurface")
 @onready var CanvasCamera = $CanvasCamera
 #@onready var DrawControl = $DrawControl
@@ -17,7 +20,7 @@ func _ready():
 	BrushInfo.secondary_color = secondary_color 
 	DrawSurface.size = canvas_size
 	Tools.current = current_tool
-
+	BrushInfo.current_shape = brush_shape
 
 func _input(event):
 	
