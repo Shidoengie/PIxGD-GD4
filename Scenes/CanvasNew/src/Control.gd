@@ -8,7 +8,7 @@ signal change_brush
 @export var primary_color = Color.BLACK
 @export var secondary_color = Color.WHITE
 @export var brush_shape = BrushInfo.ROUND
-@export var current_tool = Tools.PEN
+@export var current_tool = Tools.FILL
 @export var canvas_size = Vector2(20,20)
 
 @onready var DrawSurface = get_node("%DrawSurface")

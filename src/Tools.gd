@@ -1,9 +1,8 @@
 extends Node
 
-enum {PEN,LINE,ERASOR}
-var current = PEN
-func floodfill(canvas_image,x,y,color):
-	canvas_image.lock()
+enum {PEN,LINE,ERASOR,FILL}
+var current = FILL
+func floodfill(canvas_image:Image,x:int,y:int,color:Color):
 	var w = canvas_image.get_height()
 	var h = canvas_image.get_width()
 	var old_color = canvas_image.get_pixel(x,y)
@@ -15,7 +14,7 @@ func floodfill(canvas_image,x,y,color):
 		var coords = queue.pop_back()
 		x = coords.x
 		y = coords.y
-		if x < 0 or x > w or y < 0 or y>=h or canvas_image.get_pixel(x,y) != old_color:
+		if x < 0 or x >= w or y < 0 or y>=h or canvas_image.get_pixel(x,y) != old_color:
 			continue
 		else:
 			canvas_image.set_pixel(x,y,color)

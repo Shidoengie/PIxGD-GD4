@@ -8,7 +8,8 @@ func _process(delta):
 	texture = ImageTexture.create_from_image(canvasImg)
 	current_color = BrushInfo.primary_color if BrushInfo.is_primary else BrushInfo.secondary_color
 	BrushInfo.current_color = current_color
-	
+	if not BrushInfo.can_paint or not BrushInfo.is_inside_canvas and Tools.current != Tools.LINE:
+		return
 	match Tools.current:
 		Tools.PEN:
 			_blit_brush(current_color,Vector2i(BrushInfo.current_position),BrushInfo.size)
@@ -17,11 +18,12 @@ func _process(delta):
 		Tools.LINE:
 			if Input.is_action_just_released("mouseLeft_1st") or Input.is_action_just_released("mouseRight_2nd"):
 				_blit_line(BrushInfo.click_position,BrushInfo.current_position,current_color,BrushInfo.size)
+		Tools.FILL:
+			Tools.floodfill(canvasImg,Vector2i(BrushInfo.current_position).x,Vector2i(BrushInfo.current_position).y,current_color)
 		_:
 			pass
 func _blit_brush(color:Color,position:Vector2i,brush_size:int):
-	if not BrushInfo.can_paint or not BrushInfo.is_inside_canvas:
-		return
+
 	var offset = BrushInfo.brushImage.get_used_rect().get_center()
 	BrushInfo.change_brush(BrushInfo.current_shape,BrushInfo.size,color)
 	canvasImg.blend_rect(BrushInfo.brushImage,BrushInfo.brushImage.get_used_rect(),BrushInfo.current_position-Vector2(offset))
