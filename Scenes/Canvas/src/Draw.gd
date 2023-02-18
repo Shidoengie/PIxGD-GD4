@@ -10,7 +10,7 @@ func _draw():
 		Tools.ERASOR:
 			_paint(Color.TRANSPARENT)
 		Tools.LINE:
-			if Input.is_action_just_released("mouseLeft_1st") or Input.is_action_just_released("mouseRight_2nd"):
+#			if Input.is_action_just_released("mouseLeft_1st") or Input.is_action_just_released("mouseRight_2nd"):
 				draw_line(BrushInfo.click_position,BrushInfo.current_position,current_color,BrushInfo.size)
 		_:
 			pass

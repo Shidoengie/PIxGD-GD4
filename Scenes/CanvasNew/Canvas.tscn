@@ -13,6 +13,7 @@ offset_right = 99.0
 offset_bottom = 101.0
 size_flags_horizontal = 4
 script = ExtResource("1_odlkd")
+brush_size = 2
 
 [node name="Container" type="ColorRect" parent="."]
 material = ExtResource("2_rjk7i")
