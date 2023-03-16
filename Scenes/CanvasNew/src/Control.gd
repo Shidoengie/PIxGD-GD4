@@ -8,7 +8,7 @@ signal change_brush
 @export var primary_color = Color.BLACK
 @export var secondary_color = Color.WHITE
 @export var brush_shape = BrushInfo.ROUND
-@export var current_tool = Tools.LINE
+@export var current_tool = Tools.PEN
 @export var canvas_size = Vector2(20,20)
 @export var brush_size = 1
 @onready var DrawSurface = get_node("%DrawSurface")
@@ -18,6 +18,7 @@ signal change_brush
 func _draw():
 	draw_string(get_theme_default_font(),Vector2.ZERO,str(BrushInfo.click_position) + "\n" + str(BrushInfo.current_position))
 func _ready():
+	
 	BrushInfo.size = brush_size
 	BrushInfo.primary_color = primary_color
 	BrushInfo.secondary_color = secondary_color 
@@ -26,6 +27,7 @@ func _ready():
 	BrushInfo.current_shape = brush_shape
 func _process(delta):
 	queue_redraw()
+	
 func _input(event):
 	
 	if event is InputEventMouseButton and event.is_pressed():

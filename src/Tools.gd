@@ -2,28 +2,12 @@ extends Node
 
 enum {PEN,LINE,ERASOR,FILL}
 var current = FILL
-func _ready():
-	self.set_process(false)
-func blit_brush(position:Vector2i,size:int,color:Color,brush_image:Image,canvas_image:Image):
-	BrushInfo.change_brush(BrushInfo.current_shape,size,color)
-	var offset = Vector2i(brush_image.get_used_rect().get_center())
-	canvas_image.blend_rect(brush_image,brush_image.get_used_rect(),position-offset)
-#func blit_line(start_pos:Vector2,stop_pos:Vector2,color:Color,width:int,shape:Image,canvas:Image):
-#	BrushInfo.change_brush(BrushInfo.current_shape,width,color)
-#	var offset = Vector2i(shape.get_used_rect().get_center())
-#	var dx = stop_pos.x-start_pos.x
-#	var dy = stop_pos.y-start_pos.y
-#	var D = 2*dy-dx
-#	var y = start_pos.y
-#	for x in range(start_pos.x,stop_pos.x):
-#		canvas.set_pixel(x,y,color)
-##		canvas.blend_rect(shape,shape.get_used_rect(),Vector2i(x,y)-offset)
-#		if D > 0:
-#			y+=1
-#			D -= 2+dx
-#		D += 2*dy
-func blit_line(start:Vector2,end:Vector2,color:Color,width:int,shape:Image,canvas:Image):
-	BrushInfo.change_brush(BrushInfo.current_shape,width,color)
+func blit_brush(position:Vector2i,size:int,color:Color,brush_image:Image,canvas):
+	if BrushInfo.last_position != position:
+		blit_line(BrushInfo.last_position,position,color,size,brush_image,canvas)
+	_placeBrush(color,position,brush_image,canvas)
+	
+func blit_line(start:Vector2,end:Vector2,color:Color,width:int,shape:Image,canvas):
 	var offset = Vector2i(shape.get_used_rect().get_center())
 	var x0 = start.x
 	var y0 = start.y
@@ -36,7 +20,7 @@ func blit_line(start:Vector2,end:Vector2,color:Color,width:int,shape:Image,canva
 	var error = dx + dy
 	
 	while true:
-		canvas.blend_rect(shape,shape.get_used_rect(),Vector2i(x0,y0)-offset)
+		_placeBrush(color,Vector2i(x0,y0),shape,canvas)
 		if x0 == x1 and y0 == y1:
 			break
 		var e2 = 2 * error
@@ -50,8 +34,6 @@ func blit_line(start:Vector2,end:Vector2,color:Color,width:int,shape:Image,canva
 				break
 			error += dx
 			y0 += sy
-func _process(delta):
-	pass
 # https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 func floodfill(canvas_image:Image,x:int,y:int,color:Color):
 	var w = canvas_image.get_height()
@@ -74,3 +56,10 @@ func floodfill(canvas_image:Image,x:int,y:int,color:Color):
 			queue.append(Vector2(x+1,y))
 			queue.append(Vector2(x-1,y))
 
+func _placeBrush(color:Color,position:Vector2i,shape,cnv) -> void:
+	var offset = Vector2i(shape.get_used_rect().get_center())
+	if color.a == 0:
+		var newShape = BrushInfo.brushUpdateColor(Color.TRANSPARENT)
+		cnv.blit_rect(newShape,newShape.get_used_rect(),position-offset)
+		return
+	cnv.blend_rect(shape,shape.get_used_rect(),position-offset)
